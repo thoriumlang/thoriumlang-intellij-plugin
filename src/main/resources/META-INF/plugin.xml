@@ -1,0 +1,23 @@
+<idea-plugin>
+    <id>org.thoriumlang.thoriumlang-intellij-plugin</id>
+    <name>thoriumlang-plugin</name>
+    <vendor email="nomail@thoriumlang.org" url="http://thoriumlang.org">Thoriumlang</vendor>
+
+    <description><![CDATA[
+    thoriumlang intellij plugin
+    ]]></description>
+
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <!-- uncomment to enable plugin in all products
+    <depends>com.intellij.modules.lang</depends>
+    -->
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+    </extensions>
+
+    <actions>
+        <!-- Add your actions here -->
+    </actions>
+</idea-plugin>
