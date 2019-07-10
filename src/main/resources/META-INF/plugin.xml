@@ -4,7 +4,7 @@
     <vendor email="nomail@thoriumlang.org" url="http://thoriumlang.org">Thoriumlang</vendor>
 
     <description><![CDATA[
-    thoriumlang language support intellij plugin
+    thoriumlang language support plugin for intellij
     ]]></description>
 
     <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
@@ -12,8 +12,8 @@
     <!-- uncomment to enable plugin in all products
     <depends>com.intellij.modules.lang</depends>
     -->
-
     <extensions defaultExtensionNs="com.intellij">
+
         <fileTypeFactory implementation="org.thoriumlang.intellij.plugin.ThoriumFileTypeFactory"/>
 
         <lang.syntaxHighlighterFactory language="Thorium"
@@ -31,4 +31,10 @@
     <actions>
         <!-- Add your actions here -->
     </actions>
+
+    <project-components>
+        <component>
+            <implementation-class>org.thoriumlang.intellij.plugin.ThoriumTextEditorHighlightingPassFactory</implementation-class>
+        </component>
+    </project-components>
 </idea-plugin>

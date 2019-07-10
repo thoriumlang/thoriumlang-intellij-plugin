@@ -22,7 +22,7 @@ import com.intellij.psi.tree.IElementType;
 import org.antlr.intellij.adaptor.lexer.TokenIElementType;
 import org.jetbrains.annotations.NotNull;
 import org.thoriumlang.compiler.antlr.ThoriumLexer;
-import org.thoriumlang.intellij.plugin.psi.IdentifierPSINode;
+import org.thoriumlang.intellij.plugin.psi.Identifier;
 
 public class ThoriumASTFactory extends CoreASTFactory {
     @NotNull
@@ -36,7 +36,7 @@ public class ThoriumASTFactory extends CoreASTFactory {
     public LeafElement createLeaf(@NotNull IElementType type, CharSequence text) {
         if (type instanceof TokenIElementType &&
                 ((TokenIElementType) type).getANTLRTokenType() == ThoriumLexer.IDENTIFIER) {
-            return new IdentifierPSINode(type, text);
+            return new Identifier(type, text);
         }
 
         return super.createLeaf(type, text);

@@ -37,22 +37,25 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import org.jetbrains.annotations.NotNull;
 import org.thoriumlang.compiler.antlr.ThoriumLexer;
 import org.thoriumlang.compiler.antlr.ThoriumParser;
-import org.thoriumlang.intellij.plugin.psi.ThoriumPSIFileRoot;
-import org.thoriumlang.intellij.plugin.psi.TypeDefSubtree;
-
-import java.util.List;
+import org.thoriumlang.intellij.plugin.psi.MethodSignature;
+import org.thoriumlang.intellij.plugin.psi.FileRoot;
+import org.thoriumlang.intellij.plugin.psi.TypeDef;
 
 public class ThoriumParserDefinition implements ParserDefinition {
     public static final TokenIElementType IDENTIFIER;
     private static final IFileElementType FILE = new IFileElementType(ThoriumLanguage.INSTANCE);
 
+
     static {
-        PSIElementTypeFactory.defineLanguageIElementTypes(ThoriumLanguage.INSTANCE,
+        PSIElementTypeFactory.defineLanguageIElementTypes(
+                ThoriumLanguage.INSTANCE,
                 ThoriumParser.tokenNames,
-                ThoriumParser.ruleNames);
-        List<TokenIElementType> tokenIElementTypes =
-                PSIElementTypeFactory.getTokenIElementTypes(ThoriumLanguage.INSTANCE);
-        IDENTIFIER = tokenIElementTypes.get(ThoriumLexer.IDENTIFIER);
+                ThoriumParser.ruleNames
+        );
+
+        IDENTIFIER = PSIElementTypeFactory
+                .getTokenIElementTypes(ThoriumLanguage.INSTANCE)
+                .get(ThoriumLexer.IDENTIFIER);
     }
 
     @NotNull
@@ -67,11 +70,9 @@ public class ThoriumParserDefinition implements ParserDefinition {
         return new ANTLRParserAdaptor(ThoriumLanguage.INSTANCE, new ThoriumParser(null)) {
             @Override
             protected ParseTree parse(Parser parser, IElementType root) {
-                // start rule depends on root passed in; sometimes we want to create an ID node etc...
                 if (root instanceof IFileElementType) {
                     return ((ThoriumParser) parser).root();
                 }
-                // let's hope it's an ID as needed by "rename function"
                 return ((ThoriumParser) parser).root();
             }
         };
@@ -111,7 +112,7 @@ public class ThoriumParserDefinition implements ParserDefinition {
 
     @Override
     public PsiFile createFile(FileViewProvider viewProvider) {
-        return new ThoriumPSIFileRoot(viewProvider);
+        return new FileRoot(viewProvider);
     }
 
     @NotNull
@@ -131,7 +132,9 @@ public class ThoriumParserDefinition implements ParserDefinition {
 
         switch (ruleElType.getRuleIndex()) {
             case ThoriumParser.RULE_typeDef:
-                return new TypeDefSubtree(node, elType);
+                return new TypeDef(node, elType);
+            case ThoriumParser.RULE_methodSignature:
+                return new MethodSignature(node, elType);
             default:
                 return new ANTLRPsiNode(node);
         }

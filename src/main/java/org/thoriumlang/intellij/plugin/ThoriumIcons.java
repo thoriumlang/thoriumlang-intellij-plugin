@@ -21,4 +21,8 @@ import javax.swing.*;
 
 public class ThoriumIcons {
     public static final Icon FILE = IconLoader.getIcon("/org/thoriumlang/intellij/plugin/icons/jar-gray.png");
+
+    private ThoriumIcons() {
+        // nothing
+    }
 }

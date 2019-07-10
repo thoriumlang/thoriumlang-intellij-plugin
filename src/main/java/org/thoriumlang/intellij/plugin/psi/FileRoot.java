@@ -15,20 +15,46 @@
  */
 package org.thoriumlang.intellij.plugin.psi;
 
-import com.intellij.lang.ASTNode;
+import com.intellij.extapi.psi.PsiFileBase;
+import com.intellij.openapi.fileTypes.FileType;
+import com.intellij.psi.FileViewProvider;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiNamedElement;
-import com.intellij.psi.tree.IElementType;
 import org.antlr.intellij.adaptor.SymtabUtils;
-import org.antlr.intellij.adaptor.psi.IdentifierDefSubtree;
 import org.antlr.intellij.adaptor.psi.ScopeNode;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.thoriumlang.intellij.plugin.ThoriumFileType;
+import org.thoriumlang.intellij.plugin.ThoriumIcons;
 import org.thoriumlang.intellij.plugin.ThoriumLanguage;
 
-public class TypeDefSubtree extends IdentifierDefSubtree implements ScopeNode {
-    public TypeDefSubtree(@NotNull ASTNode node, @NotNull IElementType idElementType) {
-        super(node, idElementType);
+import javax.swing.*;
+
+public class FileRoot extends PsiFileBase implements ScopeNode {
+    public FileRoot(FileViewProvider viewProvider) {
+        super(viewProvider, ThoriumLanguage.INSTANCE);
+    }
+
+    @NotNull
+    @Override
+    public FileType getFileType() {
+        return ThoriumFileType.INSTANCE;
+    }
+
+    @Override
+    public String toString() {
+        return "Thorium file";
+    }
+
+    @Nullable
+    @Override
+    public Icon getIcon(int flags) {
+        return ThoriumIcons.FILE;
+    }
+
+    @Override
+    public ScopeNode getContext() {
+        return null;
     }
 
     @Nullable

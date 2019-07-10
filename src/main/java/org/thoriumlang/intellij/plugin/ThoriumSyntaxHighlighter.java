@@ -28,18 +28,41 @@ import org.thoriumlang.compiler.antlr.ThoriumLexer;
 import static com.intellij.openapi.editor.colors.TextAttributesKey.createTextAttributesKey;
 
 public class ThoriumSyntaxHighlighter implements SyntaxHighlighter {
-    static final TextAttributesKey IDENTIFIER =
-            createTextAttributesKey("THORIUM_IDENTIFIER", DefaultLanguageHighlighterColors.IDENTIFIER);
-    static final TextAttributesKey KEYWORD =
-            createTextAttributesKey("THORIUM_KEYWORD", DefaultLanguageHighlighterColors.KEYWORD);
-    static final TextAttributesKey STRING =
-            createTextAttributesKey("THORIUM_STRING", DefaultLanguageHighlighterColors.STRING);
-    static final TextAttributesKey LINE_COMMENT =
-            createTextAttributesKey("THORIUM_LINE_COMMENT", DefaultLanguageHighlighterColors.LINE_COMMENT);
-    static final TextAttributesKey NUMBER =
-            createTextAttributesKey("THORIUM_NUMBER", DefaultLanguageHighlighterColors.NUMBER);
-    static final TextAttributesKey PUNCTUATION =
-            createTextAttributesKey("THORIUM_PUNCTUATION", DefaultLanguageHighlighterColors.KEYWORD);
+    static final TextAttributesKey IDENTIFIER = createTextAttributesKey(
+            "THORIUM_IDENTIFIER",
+            DefaultLanguageHighlighterColors.IDENTIFIER
+    );
+
+    static final TextAttributesKey METHOD_DECLARATION = createTextAttributesKey(
+            "THORIUM_METHOD_DECLARATION",
+            DefaultLanguageHighlighterColors.FUNCTION_DECLARATION
+    );
+
+    static final TextAttributesKey KEYWORD = createTextAttributesKey(
+            "THORIUM_KEYWORD",
+            DefaultLanguageHighlighterColors.KEYWORD
+    );
+
+    static final TextAttributesKey STRING = createTextAttributesKey(
+            "THORIUM_STRING",
+            DefaultLanguageHighlighterColors.STRING
+    );
+
+    static final TextAttributesKey LINE_COMMENT = createTextAttributesKey(
+            "THORIUM_LINE_COMMENT",
+            DefaultLanguageHighlighterColors.LINE_COMMENT
+    );
+
+    static final TextAttributesKey NUMBER = createTextAttributesKey(
+            "THORIUM_NUMBER",
+            DefaultLanguageHighlighterColors.NUMBER
+    );
+
+    static final TextAttributesKey PUNCTUATION = createTextAttributesKey(
+            "THORIUM_PUNCTUATION",
+            DefaultLanguageHighlighterColors.KEYWORD
+    );
+
     private static final TextAttributesKey[] EMPTY_KEYS =
             new TextAttributesKey[0];
 

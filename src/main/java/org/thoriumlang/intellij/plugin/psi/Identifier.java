@@ -19,7 +19,6 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiNamedElement;
 import com.intellij.psi.PsiReference;
 import com.intellij.psi.tree.IElementType;
-import com.intellij.util.IncorrectOperationException;
 import org.antlr.intellij.adaptor.psi.ANTLRPsiLeafNode;
 import org.antlr.intellij.adaptor.psi.Trees;
 import org.jetbrains.annotations.NonNls;
@@ -27,8 +26,9 @@ import org.jetbrains.annotations.NotNull;
 import org.thoriumlang.intellij.plugin.ThoriumLanguage;
 import org.thoriumlang.intellij.plugin.ThoriumParserDefinition;
 
-public class IdentifierPSINode extends ANTLRPsiLeafNode implements PsiNamedElement {
-    public IdentifierPSINode(IElementType type, CharSequence text) {
+@SuppressWarnings("squid:MaximumInheritanceDepth")
+public class Identifier extends ANTLRPsiLeafNode implements PsiNamedElement {
+    public Identifier(IElementType type, CharSequence text) {
         super(type, text);
     }
 
@@ -38,7 +38,7 @@ public class IdentifierPSINode extends ANTLRPsiLeafNode implements PsiNamedEleme
     }
 
     @Override
-    public PsiElement setName(@NonNls @NotNull String name) throws IncorrectOperationException {
+    public PsiElement setName(@NonNls @NotNull String name) {
         if (getParent() == null) {
             return this;
         }
