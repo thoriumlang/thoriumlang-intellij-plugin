@@ -1,10 +1,10 @@
 <idea-plugin>
     <id>org.thoriumlang.thoriumlang-intellij-plugin</id>
-    <name>thoriumlang-plugin</name>
+    <name>thoriumlang</name>
     <vendor email="nomail@thoriumlang.org" url="http://thoriumlang.org">Thoriumlang</vendor>
 
     <description><![CDATA[
-    thoriumlang intellij plugin
+    thoriumlang language support intellij plugin
     ]]></description>
 
     <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
@@ -14,7 +14,18 @@
     -->
 
     <extensions defaultExtensionNs="com.intellij">
-        <!-- Add your extensions here -->
+        <fileTypeFactory implementation="org.thoriumlang.intellij.plugin.ThoriumFileTypeFactory"/>
+
+        <lang.syntaxHighlighterFactory language="Thorium"
+                                       implementationClass="org.thoriumlang.intellij.plugin.ThoriumSyntaxHighlighterFactory"/>
+
+        <lang.parserDefinition language="Thorium"
+                               implementationClass="org.thoriumlang.intellij.plugin.ThoriumParserDefinition"/>
+
+        <lang.ast.factory language="Thorium"
+                          implementationClass="org.thoriumlang.intellij.plugin.ThoriumASTFactory"/>
+
+        <colorSettingsPage implementation="org.thoriumlang.intellij.plugin.ThoriumColorSettingsPage"/>
     </extensions>
 
     <actions>
