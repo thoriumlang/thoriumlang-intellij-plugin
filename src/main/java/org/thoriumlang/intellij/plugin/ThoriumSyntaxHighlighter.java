@@ -24,6 +24,7 @@ import org.antlr.intellij.adaptor.lexer.ANTLRLexerAdaptor;
 import org.antlr.intellij.adaptor.lexer.TokenIElementType;
 import org.jetbrains.annotations.NotNull;
 import org.thoriumlang.compiler.antlr.ThoriumLexer;
+import org.thoriumlang.intellij.plugin.antlr4.Tokens;
 
 import static com.intellij.openapi.editor.colors.TextAttributesKey.createTextAttributesKey;
 
@@ -66,17 +67,8 @@ public class ThoriumSyntaxHighlighter implements SyntaxHighlighter {
     private static final TextAttributesKey[] EMPTY_KEYS =
             new TextAttributesKey[0];
 
-    private static final int SEMICOLON = tokenId(";");
-    private static final int COLON = tokenId(":");
-
-    private static int tokenId(String literal) {
-        for (int i = 0; i < ThoriumLexer.VOCABULARY.getMaxTokenType(); i++) {
-            if (("'" + literal + "'").equals(ThoriumLexer.VOCABULARY.getLiteralName(i))) {
-                return i;
-            }
-        }
-        return -1;
-    }
+    private static final int SEMICOLON = Tokens.INSTANCE.tokenId(";");
+    private static final int COLON = Tokens.INSTANCE.tokenId(":");
 
     @NotNull
     @Override
