@@ -92,7 +92,8 @@ public class ThoriumParserDefinition implements ParserDefinition {
     public TokenSet getCommentTokens() {
         return PSIElementTypeFactory.createTokenSet(
                 ThoriumLanguage.INSTANCE,
-                ThoriumLexer.LINE_COMMENT
+                ThoriumLexer.LINE_COMMENT,
+                ThoriumLexer.BLOCK_COMMENT
         );
     }
 

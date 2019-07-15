@@ -33,6 +33,7 @@ public class ThoriumColorSettingsPage implements ColorSettingsPage {
             new AttributesDescriptor("String", ThoriumSyntaxHighlighter.STRING),
             new AttributesDescriptor("Number", ThoriumSyntaxHighlighter.NUMBER),
             new AttributesDescriptor("Line comment", ThoriumSyntaxHighlighter.LINE_COMMENT),
+            new AttributesDescriptor("Block comment", ThoriumSyntaxHighlighter.BLOCK_COMMENT),
             new AttributesDescriptor("Punctuation", ThoriumSyntaxHighlighter.PUNCTUATION),
     };
 
@@ -65,6 +66,9 @@ public class ThoriumColorSettingsPage implements ColorSettingsPage {
                         "\n" +
                         "// this is a comment\n" +
                         "type MyType {\n" +
+                        "    /**\n" +
+                        "     * returns bla bla bla\n" +
+                        "     */\n" +
                         "    public a(): ((A?&B)|C)?|(D);\n" +
                         "    namespace b(): A&B;\n" +
                         "    c(): A?&C;\n" +
