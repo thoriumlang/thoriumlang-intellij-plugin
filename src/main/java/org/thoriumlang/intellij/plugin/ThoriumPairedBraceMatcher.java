@@ -43,6 +43,15 @@ public class ThoriumPairedBraceMatcher implements PairedBraceMatcher {
                 new BracePair(
                         PSIElementTypeFactory
                                 .getTokenIElementTypes(ThoriumLanguage.INSTANCE)
+                                .get(tokens.tokenId("[")),
+                        PSIElementTypeFactory
+                                .getTokenIElementTypes(ThoriumLanguage.INSTANCE)
+                                .get(tokens.tokenId("]")),
+                        false
+                ),
+                new BracePair(
+                        PSIElementTypeFactory
+                                .getTokenIElementTypes(ThoriumLanguage.INSTANCE)
                                 .get(tokens.tokenId("{")),
                         PSIElementTypeFactory
                                 .getTokenIElementTypes(ThoriumLanguage.INSTANCE)
