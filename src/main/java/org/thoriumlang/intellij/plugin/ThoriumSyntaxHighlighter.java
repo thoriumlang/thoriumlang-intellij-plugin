@@ -73,6 +73,7 @@ public class ThoriumSyntaxHighlighter implements SyntaxHighlighter {
 
     private static final int SEMICOLON = Tokens.INSTANCE.tokenId(";");
     private static final int COLON = Tokens.INSTANCE.tokenId(":");
+    private static final int QUESTION_MARK = Tokens.INSTANCE.tokenId("?");
 
     @NotNull
     @Override
@@ -121,7 +122,7 @@ public class ThoriumSyntaxHighlighter implements SyntaxHighlighter {
                 attrKey = BLOCK_COMMENT;
                 break;
             default:
-                if (antlrTokenType == SEMICOLON || antlrTokenType == COLON) {
+                if (antlrTokenType == SEMICOLON || antlrTokenType == COLON || antlrTokenType == QUESTION_MARK) {
                     attrKey = PUNCTUATION;
                 }
                 else {
