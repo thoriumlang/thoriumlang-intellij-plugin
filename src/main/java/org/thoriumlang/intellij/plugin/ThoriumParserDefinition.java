@@ -37,14 +37,14 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import org.jetbrains.annotations.NotNull;
 import org.thoriumlang.compiler.antlr.ThoriumLexer;
 import org.thoriumlang.compiler.antlr.ThoriumParser;
-import org.thoriumlang.intellij.plugin.psi.MethodSignature;
 import org.thoriumlang.intellij.plugin.psi.FileRoot;
+import org.thoriumlang.intellij.plugin.psi.MethodDefinition;
+import org.thoriumlang.intellij.plugin.psi.MethodSignature;
 import org.thoriumlang.intellij.plugin.psi.TypeDef;
 
 public class ThoriumParserDefinition implements ParserDefinition {
     public static final TokenIElementType IDENTIFIER;
     private static final IFileElementType FILE = new IFileElementType(ThoriumLanguage.INSTANCE);
-
 
     static {
         PSIElementTypeFactory.defineLanguageIElementTypes(
@@ -136,6 +136,8 @@ public class ThoriumParserDefinition implements ParserDefinition {
                 return new TypeDef(node, elType);
             case ThoriumParser.RULE_methodSignature:
                 return new MethodSignature(node, elType);
+            case ThoriumParser.RULE_methodDef:
+                return new MethodDefinition(node, elType);
             default:
                 return new ANTLRPsiNode(node);
         }

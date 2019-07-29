@@ -26,6 +26,7 @@ import com.intellij.psi.PsiFile;
 import com.intellij.psi.PsiRecursiveElementWalkingVisitor;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.thoriumlang.intellij.plugin.psi.MethodDefinition;
 import org.thoriumlang.intellij.plugin.psi.MethodSignature;
 
 import java.util.ArrayList;
@@ -49,6 +50,15 @@ public class ThoriumTextEditorHighlightingPass extends TextEditorHighlightingPas
                     myInfos.add(
                             HighlightInfo.newHighlightInfo(HighlightInfoType.INFORMATION)
                                     .range(((MethodSignature) element).getNameIdentifierThorium())
+                                    .needsUpdateOnTyping(false)
+                                    .textAttributes(ThoriumSyntaxHighlighter.METHOD_DECLARATION)
+                                    .create()
+                    );
+                }
+                else if (element instanceof MethodDefinition) {
+                    myInfos.add(
+                            HighlightInfo.newHighlightInfo(HighlightInfoType.INFORMATION)
+                                    .range(((MethodDefinition) element).getNameIdentifierThorium())
                                     .needsUpdateOnTyping(false)
                                     .textAttributes(ThoriumSyntaxHighlighter.METHOD_DECLARATION)
                                     .create()
