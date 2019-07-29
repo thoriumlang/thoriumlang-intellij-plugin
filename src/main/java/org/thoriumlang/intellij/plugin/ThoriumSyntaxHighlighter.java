@@ -101,6 +101,8 @@ public class ThoriumSyntaxHighlighter implements SyntaxHighlighter {
             case ThoriumLexer.VAR:
             case ThoriumLexer.BOOLEAN:
             case ThoriumLexer.NONE:
+            case ThoriumLexer.THIS:
+            case ThoriumLexer.RETURN:
                 attrKey = KEYWORD;
                 break;
             case ThoriumLexer.IDENTIFIER:
