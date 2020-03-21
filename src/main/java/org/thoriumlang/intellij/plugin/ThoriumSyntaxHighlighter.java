@@ -100,7 +100,8 @@ public class ThoriumSyntaxHighlighter implements SyntaxHighlighter {
             case ThoriumLexer.NAMESPACE:
             case ThoriumLexer.VAL:
             case ThoriumLexer.VAR:
-            case ThoriumLexer.BOOLEAN:
+            case ThoriumLexer.TRUE:
+            case ThoriumLexer.FALSE:
             case ThoriumLexer.NONE:
             case ThoriumLexer.THIS:
             case ThoriumLexer.RETURN:
