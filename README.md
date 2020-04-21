@@ -1,4 +1,4 @@
-# thoriumlang.intellij-plugin
+# thoriumlang-intellij-plugin
 
 ## Resources
  * [antlr/antlr4-intellij-adaptor](https://github.com/antlr/antlr4-intellij-adaptor)

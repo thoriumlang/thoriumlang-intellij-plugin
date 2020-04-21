@@ -27,7 +27,7 @@ intellij {
 }
 patchPluginXml {
     sinceBuild "191"
-    untilBuild "193.*"
+    untilBuild "201.*"
     changeNotes """
       Add change notes here.<br>
       <em>most HTML tags may be used</em>"""
