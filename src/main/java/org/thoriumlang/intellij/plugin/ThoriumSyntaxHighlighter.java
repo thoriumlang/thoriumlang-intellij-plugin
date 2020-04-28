@@ -20,10 +20,10 @@ import com.intellij.openapi.editor.DefaultLanguageHighlighterColors;
 import com.intellij.openapi.editor.colors.TextAttributesKey;
 import com.intellij.openapi.fileTypes.SyntaxHighlighter;
 import com.intellij.psi.tree.IElementType;
-import org.antlr.intellij.adaptor.lexer.ANTLRLexerAdaptor;
 import org.antlr.intellij.adaptor.lexer.TokenIElementType;
 import org.jetbrains.annotations.NotNull;
 import org.thoriumlang.compiler.antlr.ThoriumLexer;
+import org.thoriumlang.intellij.plugin.antlr4.ANTLRLexerAdaptorFactory;
 import org.thoriumlang.intellij.plugin.antlr4.Tokens;
 
 import static com.intellij.openapi.editor.colors.TextAttributesKey.createTextAttributesKey;
@@ -78,8 +78,7 @@ public class ThoriumSyntaxHighlighter implements SyntaxHighlighter {
     @NotNull
     @Override
     public Lexer getHighlightingLexer() {
-        ThoriumLexer lexer = new ThoriumLexer(null);
-        return new ANTLRLexerAdaptor(ThoriumLanguage.INSTANCE, lexer);
+        return ANTLRLexerAdaptorFactory.newInstance();
     }
 
     @NotNull
@@ -125,8 +124,7 @@ public class ThoriumSyntaxHighlighter implements SyntaxHighlighter {
             default:
                 if (antlrTokenType == SEMICOLON || antlrTokenType == COLON || antlrTokenType == QUESTION_MARK) {
                     attrKey = PUNCTUATION;
-                }
-                else {
+                } else {
                     return EMPTY_KEYS;
                 }
         }

@@ -26,7 +26,6 @@ import com.intellij.psi.PsiFile;
 import com.intellij.psi.tree.IElementType;
 import com.intellij.psi.tree.IFileElementType;
 import com.intellij.psi.tree.TokenSet;
-import org.antlr.intellij.adaptor.lexer.ANTLRLexerAdaptor;
 import org.antlr.intellij.adaptor.lexer.PSIElementTypeFactory;
 import org.antlr.intellij.adaptor.lexer.RuleIElementType;
 import org.antlr.intellij.adaptor.lexer.TokenIElementType;
@@ -37,10 +36,15 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import org.jetbrains.annotations.NotNull;
 import org.thoriumlang.compiler.antlr.ThoriumLexer;
 import org.thoriumlang.compiler.antlr.ThoriumParser;
+import org.thoriumlang.intellij.plugin.antlr4.ANTLRLexerAdaptorFactory;
+import org.thoriumlang.intellij.plugin.antlr4.ThoriumParserFactory;
 import org.thoriumlang.intellij.plugin.psi.FileRoot;
 import org.thoriumlang.intellij.plugin.psi.MethodDefinition;
 import org.thoriumlang.intellij.plugin.psi.MethodSignature;
 import org.thoriumlang.intellij.plugin.psi.TypeDef;
+
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class ThoriumParserDefinition implements ParserDefinition {
     public static final TokenIElementType IDENTIFIER;
@@ -49,7 +53,21 @@ public class ThoriumParserDefinition implements ParserDefinition {
     static {
         PSIElementTypeFactory.defineLanguageIElementTypes(
                 ThoriumLanguage.INSTANCE,
-                ThoriumParser.tokenNames,
+                IntStream.rangeClosed(0, ThoriumParser.VOCABULARY.getMaxTokenType())
+                        .mapToObj(i -> {
+                                    String name = ThoriumParser.VOCABULARY.getLiteralName(i);
+                                    if (name != null) {
+                                        return name;
+                                    }
+                                    name = ThoriumParser.VOCABULARY.getSymbolicName(i);
+                                    if (name != null) {
+                                        return name;
+                                    }
+                                    return "<INVALID>";
+                                }
+                        )
+                        .collect(Collectors.toList())
+                        .toArray(new String[]{}),
                 ThoriumParser.ruleNames
         );
 
@@ -61,18 +79,14 @@ public class ThoriumParserDefinition implements ParserDefinition {
     @NotNull
     @Override
     public Lexer createLexer(Project project) {
-        ThoriumLexer lexer = new ThoriumLexer(null);
-        return new ANTLRLexerAdaptor(ThoriumLanguage.INSTANCE, lexer);
+        return ANTLRLexerAdaptorFactory.newInstance();
     }
 
     @Override
     public PsiParser createParser(Project project) {
-        return new ANTLRParserAdaptor(ThoriumLanguage.INSTANCE, new ThoriumParser(null)) {
+        return new ANTLRParserAdaptor(ThoriumLanguage.INSTANCE, ThoriumParserFactory.newInstance()) {
             @Override
             protected ParseTree parse(Parser parser, IElementType root) {
-                if (root instanceof IFileElementType) {
-                    return ((ThoriumParser) parser).root();
-                }
                 return ((ThoriumParser) parser).root();
             }
         };

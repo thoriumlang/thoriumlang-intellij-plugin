@@ -37,7 +37,8 @@
 
     <project-components>
         <component>
-            <implementation-class>org.thoriumlang.intellij.plugin.ThoriumTextEditorHighlightingPassFactory
+            <implementation-class>
+                org.thoriumlang.intellij.plugin.ThoriumTextEditorHighlightingPassFactory
             </implementation-class>
         </component>
     </project-components>
