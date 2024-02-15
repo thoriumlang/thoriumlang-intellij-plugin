@@ -43,11 +43,18 @@ import org.thoriumlang.intellij.plugin.psi.MethodDefinition;
 import org.thoriumlang.intellij.plugin.psi.MethodSignature;
 import org.thoriumlang.intellij.plugin.psi.TypeDef;
 
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class ThoriumParserDefinition implements ParserDefinition {
+    public static final TokenIElementType LINE_COMMENT;
+
     public static final TokenIElementType IDENTIFIER;
+    public static final TokenIElementType BLOCK_COMMENT;
+    public static final TokenIElementType DOC_COMMENT;
+    private static final List<TokenIElementType> TOKEN_ELEMENT_TYPES;
+
     private static final IFileElementType FILE = new IFileElementType(ThoriumLanguage.INSTANCE);
 
     static {
@@ -71,9 +78,12 @@ public class ThoriumParserDefinition implements ParserDefinition {
                 ThoriumParser.ruleNames
         );
 
-        IDENTIFIER = PSIElementTypeFactory
-                .getTokenIElementTypes(ThoriumLanguage.INSTANCE)
-                .get(ThoriumLexer.IDENTIFIER);
+        TOKEN_ELEMENT_TYPES = PSIElementTypeFactory.getTokenIElementTypes(ThoriumLanguage.INSTANCE);
+
+        IDENTIFIER = TOKEN_ELEMENT_TYPES.get(ThoriumLexer.IDENTIFIER);
+        LINE_COMMENT = TOKEN_ELEMENT_TYPES.get(ThoriumLexer.LINE_COMMENT);
+        BLOCK_COMMENT = TOKEN_ELEMENT_TYPES.get(ThoriumLexer.BLOCK_COMMENT);
+        DOC_COMMENT = TOKEN_ELEMENT_TYPES.get(ThoriumLexer.DOC_COMMENT);
     }
 
     @NotNull
@@ -107,7 +117,8 @@ public class ThoriumParserDefinition implements ParserDefinition {
         return PSIElementTypeFactory.createTokenSet(
                 ThoriumLanguage.INSTANCE,
                 ThoriumLexer.LINE_COMMENT,
-                ThoriumLexer.BLOCK_COMMENT
+                ThoriumLexer.BLOCK_COMMENT,
+                ThoriumLexer.DOC_COMMENT
         );
     }
 

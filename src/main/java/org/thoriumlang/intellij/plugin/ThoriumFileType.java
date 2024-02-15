@@ -31,13 +31,13 @@ public class ThoriumFileType extends LanguageFileType {
     @NotNull
     @Override
     public String getName() {
-        return "Thorium file";
+        return "Thorium";
     }
 
     @NotNull
     @Override
     public String getDescription() {
-        return "Thorium language file";
+        return "Thorium";
     }
 
     @NotNull

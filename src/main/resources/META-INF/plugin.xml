@@ -13,7 +13,6 @@
     <depends>com.intellij.modules.lang</depends>
     -->
     <extensions defaultExtensionNs="com.intellij">
-
         <fileTypeFactory implementation="org.thoriumlang.intellij.plugin.ThoriumFileTypeFactory"/>
 
         <lang.syntaxHighlighterFactory language="Thorium"
@@ -27,6 +26,8 @@
 
         <lang.braceMatcher language="Thorium"
                            implementationClass="org.thoriumlang.intellij.plugin.ThoriumPairedBraceMatcher"/>
+
+        <lang.commenter language="Thorium" implementationClass="org.thoriumlang.intellij.plugin.ThoriumCommenter" />
 
         <colorSettingsPage implementation="org.thoriumlang.intellij.plugin.ThoriumColorSettingsPage"/>
     </extensions>

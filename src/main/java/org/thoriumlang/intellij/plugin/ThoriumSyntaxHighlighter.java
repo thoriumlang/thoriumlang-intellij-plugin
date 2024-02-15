@@ -57,6 +57,10 @@ public class ThoriumSyntaxHighlighter implements SyntaxHighlighter {
             "THORIUM_BLOCK_COMMENT",
             DefaultLanguageHighlighterColors.BLOCK_COMMENT
     );
+    static final TextAttributesKey DOC_COMMENT = createTextAttributesKey(
+            "THORIUM_DOC_COMMENT",
+            DefaultLanguageHighlighterColors.DOC_COMMENT
+    );
 
     static final TextAttributesKey NUMBER = createTextAttributesKey(
             "THORIUM_NUMBER",
@@ -120,6 +124,9 @@ public class ThoriumSyntaxHighlighter implements SyntaxHighlighter {
                 break;
             case ThoriumLexer.BLOCK_COMMENT:
                 attrKey = BLOCK_COMMENT;
+                break;
+            case ThoriumLexer.DOC_COMMENT:
+                attrKey = DOC_COMMENT;
                 break;
             default:
                 if (antlrTokenType == SEMICOLON || antlrTokenType == COLON || antlrTokenType == QUESTION_MARK) {
